@@ -29,7 +29,7 @@ Things you may want to cover:
 |password|string|null: false
 
 ### Association
-- has_many :groups
+- has_many :groups, through: :groups_users
 - has_many :comments
 - has_many :messages
 
@@ -38,11 +38,9 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 ｜name｜text|null: false,
-| member|string|
-|comment|
 
 ### Association
-- has_many: users
+- has_many: users, through: :group_users
 - has_many: comments
 
 ## groups_usersテーブル
@@ -60,8 +58,8 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |text|text|null: false|
+|image|text|
 |user_id|integer|null: false, foreign_key: true|
-|tweet_id|integer|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :tweet
