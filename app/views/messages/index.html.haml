@@ -1,5 +1,64 @@
 .wrapper
   = render "side_bar"
   = render "main_chat"
-.side-bar
-.chat-main
+  .side__bar
+    .side__bar__header
+      .side__bar__header__box
+        %p.side__bar__header__box__name
+          ユーザー名
+        %ul.side__bar__header__box__icon
+          %li.side__bar__header__box__icon__edit
+            = link_to "#", class: "menu" do 
+              = icon('fas', 'edit')
+          %li.side__bar__header__box__icon__cog
+            = link_to "#", class: "menu" do
+              = icon('fas', 'cog')
+
+    .side__bar__groups
+      = link_to "#", class: "group" do
+        %p.side__bar__groups__name
+          まだメッセージはありません。
+        %p.side__bar__groups__text
+          text
+    .side__bar__groups
+      = link_to "#", class: "group" do
+        %p.side__bar__groups__name
+          まだメッセージはありません。
+        %p.side__bar__groups__text
+          text
+  .chat__main
+    .chat__main__group
+      .chat__main__group__leftbox
+        %h.chat__main__group__leftbox__name  
+          test
+        %ul.chat__main__group__leftbox__member
+          member:
+          %li.chat__main__group__leftbox__member__list
+            masa
+      = link_to "#", class: "btn" do
+        .chat__main__group__edit-btn
+          Edit  
+
+    .chat__main__group
+      .chat__main__group__leftbox
+        %h.chat__main__group__leftbox__name  
+          test
+        %ul.chat__main__group__leftbox__member
+          member:
+          %li.chat__main__group__leftbox__member__list
+            masa
+      = link_to "#", class: "btn" do
+        .chat__main__group__edit-btn
+          Edit  
+    .chat__main__message
+    .chat__main__form
+      %form.new_message
+        .input-box
+          %input{type: "text", class: "input-box__text", placeholder: "type a message"}
+          %label{class: "input-box__image" }
+            =icon('fas', "image")
+            %input{type: "file", class: "input-box__image__file"}
+        %input{type: "submit", class: "submit-btn"}
+
+
+
