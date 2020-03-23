@@ -1,4 +1,4 @@
-.wrapper
+wrapper
   .side__bar
     .side__bar__header
       .side__bar__header__box
@@ -6,18 +6,20 @@
           = current_user.name
         %ul.side__bar__header__box__icon
           %li.side__bar__header__box__icon__edit
-            = link_to "#", class: "menu" do 
+            = link_to new_group_path, class: "menu" do 
               = icon('fas', 'edit')
           %li.side__bar__header__box__icon__cog
             = link_to edit_user_path(current_user), class: "menu" do
               = icon('fas', 'cog')
 
     .side__bar__groups
-      = link_to "#", class: "group" do
+      - current_user.groups.each do |group|
+      .group
+      = link_to group_messages_path(group) do
         %p.side__bar__groups__name
-          まだメッセージはありません。
+          = group.name
         %p.side__bar__groups__text
-          text
+          まだメッセージはありません
 
   .chat__main
     .chat__main__group
@@ -34,14 +36,12 @@
 
     
     .chat__main__message
+      = render @messages
     .chat__main__form
-      %form.new_message
+     = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
         .input-box
-          %input{type: "text", class: "input-box__text", placeholder: "type a message"}
-          %label{class: "input-box__image" }
-            =icon('fas', "image")
-            %input{type: "file", class: "input-box__image__file"}
-        %input{type: "submit", class: "submit-btn"}
-
-
-
+          = f.label :image, class: 'form__mask__image' do
+            = icon('fas', 'image', class: 'icon')
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
